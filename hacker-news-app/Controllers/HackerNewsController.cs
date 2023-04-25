@@ -39,12 +39,15 @@ public class HackerNewsController : ControllerBase
     }
 
     [HttpGet("topstories")]
-    // [ResponseCache(CacheProfileName = nameof(CacheProfileName.Default60))]
+    [ResponseCache(CacheProfileName = nameof(CacheProfileName.Default60))]
     public async Task<IActionResult> GetTopStories([FromQuery] PaginationFilter filter)
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int> topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+
+        if (topStoryIds == null) return NoContent();
+
         int totalRecords = topStoryIds.Count() / 5; // limit number of items to sort
         topStoryIds = topStoryIds.Take(totalRecords).ToList();
 
@@ -54,8 +57,10 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel story = HackerNewsApiService.GetHackerNewsStoryItem(id);
-            topStories.Add(story);
+            HackerNewsFeedModel? story = HackerNewsApiService.GetHackerNewsStoryItem(id);
+            if (story != null) {
+                topStories.Add(story);
+            }
         }
 
         if (topStories == null) return NotFound();
@@ -72,7 +77,10 @@ public class HackerNewsController : ControllerBase
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int> topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+
+        if (topStoryIds == null) return NoContent();
+        
         int totalRecords = topStoryIds.Count() / 5; // limit number of items to sort
         topStoryIds = topStoryIds.Take(totalRecords).ToList();
 
@@ -82,8 +90,10 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel story = HackerNewsApiService.GetHackerNewsStoryItem(id);
-            topStories.Add(story);
+            HackerNewsFeedModel? story = HackerNewsApiService.GetHackerNewsStoryItem(id);
+            if (story != null) {
+                topStories.Add(story);
+            }
         }
 
         if (topStories == null) return NotFound();
@@ -100,7 +110,10 @@ public class HackerNewsController : ControllerBase
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int> topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+        
+        if (topStoryIds == null) return NoContent();
+
         int totalRecords = topStoryIds.Count() / 5; // limit number of items to sort
         topStoryIds = topStoryIds.Take(totalRecords).ToList();
 
@@ -110,8 +123,10 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel story = HackerNewsApiService.GetHackerNewsStoryItem(id);
-            topStories.Add(story);
+            HackerNewsFeedModel? story = HackerNewsApiService.GetHackerNewsStoryItem(id);
+            if (story != null) {
+                topStories.Add(story);
+            }
         }
 
         if (topStories == null) return NotFound();
