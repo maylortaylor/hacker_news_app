@@ -33,7 +33,7 @@ public class HackerNewsController : ControllerBase
 
         HackerNewsFeedModel hackerNewsStory = HackerNewsApiService.GetHackerNewsStoryItem(itemId);
 
-        if (hackerNewsStory == null) return NotFound();
+        if (hackerNewsStory == null) return NoContent();
 
         return Ok(new Response<HackerNewsFeedModel>(hackerNewsStory));
     }
@@ -63,7 +63,7 @@ public class HackerNewsController : ControllerBase
             }
         }
 
-        if (topStories == null) return NotFound();
+        if (topStories == null) return NoContent();
 
         PagedResponse<List<HackerNewsFeedModel>>? pagedReponse = PaginationHelper
             .CreatePagedReponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
@@ -96,7 +96,7 @@ public class HackerNewsController : ControllerBase
             }
         }
 
-        if (topStories == null) return NotFound();
+        if (topStories == null) return NoContent();
 
         PagedResponse<List<HackerNewsFeedModel>>? pagedReponse = PaginationHelper
             .CreatePagedReponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
@@ -129,7 +129,7 @@ public class HackerNewsController : ControllerBase
             }
         }
 
-        if (topStories == null) return NotFound();
+        if (topStories == null) return NoContent();
 
         PagedResponse<List<HackerNewsFeedModel>>? pagedReponse = PaginationHelper
             .CreatePagedReponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
