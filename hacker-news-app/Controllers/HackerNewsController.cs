@@ -65,10 +65,10 @@ public class HackerNewsController : ControllerBase
 
         if (topStories == null) return NoContent();
 
-        PagedResponse<List<HackerNewsFeedModel>>? pagedReponse = PaginationHelper
-            .CreatePagedReponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
+        PagedResponse<List<HackerNewsFeedModel>>? pagedResponse = PaginationHelper
+            .CreatePagedResponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
 
-        return Ok(pagedReponse);
+        return Ok(pagedResponse);
     }
     
     [HttpGet("newstories")]
@@ -98,10 +98,10 @@ public class HackerNewsController : ControllerBase
 
         if (topStories == null) return NoContent();
 
-        PagedResponse<List<HackerNewsFeedModel>>? pagedReponse = PaginationHelper
-            .CreatePagedReponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
+        PagedResponse<List<HackerNewsFeedModel>>? pagedResponse = PaginationHelper
+            .CreatePagedResponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
 
-        return Ok(pagedReponse);
+        return Ok(pagedResponse);
     }
 
     [HttpGet("beststories")]
@@ -131,9 +131,9 @@ public class HackerNewsController : ControllerBase
 
         if (topStories == null) return NoContent();
 
-        PagedResponse<List<HackerNewsFeedModel>>? pagedReponse = PaginationHelper
-            .CreatePagedReponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
+        PagedResponse<List<HackerNewsFeedModel>>? pagedResponse = PaginationHelper
+            .CreatePagedResponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
 
-        return Ok(pagedReponse);
+        return Ok(pagedResponse);
     }
 }
