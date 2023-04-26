@@ -27,8 +27,6 @@ import { TableLoadingComponent } from './table-loading/table-loading.component';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
-    FormsModule,
     SharedModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -37,10 +35,7 @@ import { TableLoadingComponent } from './table-loading/table-loading.component';
       { path: 'hacker-news-story-item/:itemId', component: HackerNewsStoryItemComponent },
     ])
   ],
-  providers: [
-    BaseApiService,
-    HackerNewsApiService,
-  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

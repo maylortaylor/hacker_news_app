@@ -1,8 +1,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { InfoParagraphComponent } from '../info-paragraph/info-paragraph.component';
 import { NumberOfTimesPipe } from '../shared/pipes/numberOfTimes';
 import { HackerNewsApiService } from '../shared/services/api-hacker-news.service';
+import { TableLoadingComponent } from '../table-loading/table-loading.component';
 import { HackerNewsStoriesFeedComponent } from './hacker-news-stories-feed.component';
 import { HackerNewsFeedType } from './models/hacker-news-feed-type.enum';
 
@@ -18,6 +20,8 @@ describe('HackerNewsStoriesFeedComponent', () => {
       ],
       declarations: [
         HackerNewsStoriesFeedComponent,
+        InfoParagraphComponent,
+        TableLoadingComponent,
         NumberOfTimesPipe
       ],
       providers: [
