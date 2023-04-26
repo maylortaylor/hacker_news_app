@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs';
 import { InfoParagraphComponent } from '../info-paragraph/info-paragraph.component';
 import { NumberOfTimesPipe } from '../shared/pipes/numberOfTimes';
 import { HackerNewsApiService } from '../shared/services/api-hacker-news.service';
@@ -38,5 +39,10 @@ describe('HackerNewsStoryItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeDefined();
+  });
+
+  it('should return random number', () => {
+    expect(component['randomNumberBetween'](1, 10)).toBeGreaterThanOrEqual(1);
+    expect(component['randomNumberBetween'](1, 10)).toBeLessThanOrEqual(10);
   });
 });
