@@ -1,0 +1,19 @@
+<table class="table table-responsive table-striped table-striped-columns">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Type</th>
+      <th>By</th>
+      <th>Time</th>
+      <th>Title</th>
+      <th>Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="placeholder-wave" *ngFor="let number of 3 | numberOfTimes">
+      <td *ngFor="let number of 6 | numberOfTimes">
+        <span class="placeholder col-12"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>

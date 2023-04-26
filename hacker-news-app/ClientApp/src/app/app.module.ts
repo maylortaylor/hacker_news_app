@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { HackerNewsStoriesFeedComponent } from './hacker-news-stories-feed/hacker-news-stories-feed.component';
 import { HackerNewsStoryItemComponent } from './hacker-news-story-item/hacker-news-story-item.component';
 import { InfoParagraphComponent } from './info-paragraph/info-paragraph.component';
+import { TableLoadingComponent } from './table-loading/table-loading.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { InfoParagraphComponent } from './info-paragraph/info-paragraph.componen
     HomeComponent,
     HackerNewsStoriesFeedComponent,
     HackerNewsStoryItemComponent,
-    InfoParagraphComponent
+    InfoParagraphComponent,
+    TableLoadingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
