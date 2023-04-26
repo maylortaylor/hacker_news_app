@@ -62,6 +62,4 @@ describe('NavMenuComponent', () => {
     const href = compiled.querySelector('.navbar-nav .nav-item:nth-child(2) .nav-link').getAttribute('href');
     expect(href).toEqual('/hacker-news-story-item');
   });
-
-
 });

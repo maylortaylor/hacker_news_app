@@ -7,7 +7,7 @@ import { BaseApiService } from './base-api.service';
 
 describe('BaseApiService', () => {
   let baseApiService: BaseApiService;
-  let httpMock: HttpTestingController;
+  let httpTestingController: HttpTestingController;
   const testObject: any = {
     "by" : "dhouston",
     "descendants" : 71,
@@ -38,7 +38,7 @@ describe('BaseApiService', () => {
     }).compileComponents();
 
     baseApiService = TestBed.inject(BaseApiService);
-    httpMock = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -52,7 +52,7 @@ describe('BaseApiService', () => {
       expect(data).toEqual(testObject);
     });
 
-    const req = httpMock.expectOne('https://hacker-news.firebaseio.com/v0/item/8863.json');
+    const req = httpTestingController.expectOne('https://hacker-news.firebaseio.com/v0/item/8863.json');
     expect(req.request.method).toBe('GET');
 
     req.flush(testObject);

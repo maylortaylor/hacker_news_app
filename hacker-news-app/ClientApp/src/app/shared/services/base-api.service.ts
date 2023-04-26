@@ -28,7 +28,7 @@ export class BaseApiService {
    */
   public get<T>(url: string): Observable<T> {
     const fullApiUrl: string = `${this.baseUrl}${url}`;
-    let response: Observable<T> = this.http.get<T>(fullApiUrl, this.httpOptions);
+    const response: Observable<T> = this.http.get<T>(fullApiUrl, this.httpOptions);
 
     return response.pipe(retry(1), catchError(this.handleErrors));
   }
