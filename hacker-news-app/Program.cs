@@ -18,12 +18,16 @@ builder.Services.AddControllers(options =>
     options.CacheProfiles.Add(nameof(CacheProfileName.Default20),
         new CacheProfile()
         {
-            Duration = 20
+            Duration = 20,
+            Location = ResponseCacheLocation.Any,
+            VaryByQueryKeys = new[] { "*" }
         });
     options.CacheProfiles.Add(nameof(CacheProfileName.Default60),
         new CacheProfile()
         {
-            Duration = 60
+            Duration = 60,
+            Location = ResponseCacheLocation.Any,
+            VaryByQueryKeys = new[] { "*" }
         });
 });
 
