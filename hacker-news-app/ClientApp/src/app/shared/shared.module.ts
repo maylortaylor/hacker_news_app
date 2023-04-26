@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { DateFromUnix } from './pipes/dateFromUnix';
-import { NumberOfTimes } from './pipes/numberOfTimes';
-import { SearchFilter } from './pipes/searchFilter';
+import { DateFromUnixPipe } from './pipes/dateFromUnix';
+import { NumberOfTimesPipe } from './pipes/numberOfTimes';
+import { SearchFilterPipe } from './pipes/searchFilter';
 
 
 @NgModule({
     declarations: [
-        NumberOfTimes,
-        DateFromUnix,
-        SearchFilter
+      NumberOfTimesPipe,
+      DateFromUnixPipe,
+      SearchFilterPipe
     ],
     exports: [
-      NumberOfTimes,
-      DateFromUnix,
-      SearchFilter
+      NumberOfTimesPipe,
+      DateFromUnixPipe,
+      SearchFilterPipe
     ],
 })
 export class SharedModule {}

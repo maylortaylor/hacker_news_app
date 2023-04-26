@@ -9,7 +9,7 @@ import { HackerNewsStory } from './models/hacker-news-story.model';
   selector: 'app-hacker-news-feed',
   templateUrl: './hacker-news-stories-feed.component.html'
 })
-export class HackerNewsStoriesComponent implements OnInit {
+export class HackerNewsStoriesFeedComponent implements OnInit {
   public stories: HackerNewsStory[] = [];
   public isLoading: boolean = false;
   public totalRecords: number;

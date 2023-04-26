@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HackerNewsFeedType } from '../hacker-news-feed/models/hacker-news-feed-type.enum';
+import { HackerNewsFeedType } from '../hacker-news-stories-feed/models/hacker-news-feed-type.enum';
 
 @Component({
   selector: 'app-home',

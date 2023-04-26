@@ -10,8 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { HackerNewsApiService } from './shared/services/api-hacker-news.service';
 import { BaseApiService } from './shared/services/base-api.service';
 import { SharedModule } from './shared/shared.module';
-import { HackerNewsStoriesComponent } from './hacker-news-feed/hacker-news-stories-feed.component';
-import { HackerNewsStoryItemComponent } from './hacker-news-item/hacker-news-story-item.component';
+import { HackerNewsStoriesFeedComponent } from './hacker-news-stories-feed/hacker-news-stories-feed.component';
+import { HackerNewsStoryItemComponent } from './hacker-news-story-item/hacker-news-story-item.component';
 import { InfoParagraphComponent } from './info-paragraph/info-paragraph.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { InfoParagraphComponent } from './info-paragraph/info-paragraph.componen
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    HackerNewsStoriesComponent,
+    HackerNewsStoriesFeedComponent,
     HackerNewsStoryItemComponent,
     InfoParagraphComponent
   ],
@@ -30,7 +30,7 @@ import { InfoParagraphComponent } from './info-paragraph/info-paragraph.componen
     SharedModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'hacker-news-stories-feed', component: HackerNewsStoriesComponent },
+      { path: 'hacker-news-stories-feed', component: HackerNewsStoriesFeedComponent },
       { path: 'hacker-news-story-item', component: HackerNewsStoryItemComponent },
       { path: 'hacker-news-story-item/:itemId', component: HackerNewsStoryItemComponent },
     ])

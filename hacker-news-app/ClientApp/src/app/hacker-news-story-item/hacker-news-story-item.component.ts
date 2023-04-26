@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HackerNewsApiService } from 'src/app/shared/services/api-hacker-news.service';
-import { HackerNewsStory } from '../hacker-news-feed/models/hacker-news-story.model';
+import { HackerNewsStory } from '../hacker-news-stories-feed/models/hacker-news-story.model';
 import { ResponseModel } from '../shared/models/response';
 
 @Component({

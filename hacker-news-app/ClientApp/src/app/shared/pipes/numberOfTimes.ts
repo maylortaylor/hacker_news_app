@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({name: 'numberOfTimes'})
-export class NumberOfTimes implements PipeTransform {
+export class NumberOfTimesPipe implements PipeTransform {
   transform(value: number) : any {
     let res = [];
     for (let i = 0; i < value; i++) {

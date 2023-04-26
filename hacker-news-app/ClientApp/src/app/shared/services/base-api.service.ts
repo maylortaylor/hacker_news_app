@@ -1,12 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-
-class Observer {
-  next: Function;
-  error: Function;
-  complete: Function;
-}
+import { Observer } from "../models/observer";
 
 @Injectable()
 export class BaseApiService {

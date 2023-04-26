@@ -16,12 +16,12 @@ export class HackerNewsApiService extends BaseApiService {
     return this.get<ResponseModel>(url);
   }
 
-  public getNewStories<T>(paginationOptions: PaginationOptions): Observable<ResponseModel> {
+  public getNewStories(paginationOptions: PaginationOptions): Observable<ResponseModel> {
     const url: string = `api/hackernews/newstories?pageNumber=${paginationOptions.page}&pageSize=${paginationOptions.size}`;
     return this.get<ResponseModel>(url);
   }
 
-  public getBestStories<T>(paginationOptions: PaginationOptions): Observable<ResponseModel> {
+  public getBestStories(paginationOptions: PaginationOptions): Observable<ResponseModel> {
     const url: string = `api/hackernews/beststories?pageNumber=${paginationOptions.page}&pageSize=${paginationOptions.size}`;
     return this.get<ResponseModel>(url);
   }
