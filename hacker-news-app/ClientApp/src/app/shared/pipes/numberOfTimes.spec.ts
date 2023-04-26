@@ -9,17 +9,17 @@ describe('NumberOfTimesPipe', () => {
     });
 
     it('should return array size of 0', () => {
-      let testNumber = 0;
+      const testNumber = 0;
       expect(pipe.transform(testNumber)).toEqual(Array.from({length: testNumber}, (v,i) => i));
     });
 
     it('should return array size of 5', () => {
-      let testNumber = 5;
+      const testNumber = 5;
       expect(pipe.transform(testNumber)).toEqual(Array.from({length: testNumber}, (v,i) => i));
     });
 
     it('should return array size of 10', () => {
-      let testNumber = 10;
+      const testNumber = 10;
       expect(pipe.transform(testNumber)).toEqual(Array.from({length: testNumber}, (v,i) => i));
     });
 });

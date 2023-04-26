@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Observer } from "../models/observer";
+import { catchError, Observable, retry, throwError } from "rxjs";
 
 @Injectable()
 export class BaseApiService {
@@ -29,21 +28,12 @@ export class BaseApiService {
    */
   public get<T>(url: string): Observable<T> {
     const fullApiUrl: string = `${this.baseUrl}${url}`;
-    let response = this.http.get<T>(fullApiUrl, this.httpOptions);
+    let response: Observable<T> = this.http.get<T>(fullApiUrl, this.httpOptions);
 
-    // return new Observable((observer: Observer) => {
-    //   observer.next(response);
-    //   observer.complete();
-    //   observer.error();
-    // });
+    return response.pipe(retry(1), catchError(this.handleErrors));
+  }
 
-    return Observable.create((observer: Observer) => {
-      response.subscribe(response => {
-        observer.next(response);
-        observer.complete();
-      }, (error) => {
-        observer.error([{ title: error.name, detail: this.genericError, error }]);
-      });
-    });
+  private handleErrors(error: any) {
+    return throwError(() => error || this.genericError);
   }
 }

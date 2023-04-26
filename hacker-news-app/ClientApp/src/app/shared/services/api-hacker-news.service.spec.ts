@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 describe('HackerNewsApiService', () => {
   // let httpTestingController: HttpTestingController;
   let hackerNewsApiService: HackerNewsApiService;
-  let fakeResponse: ResponseModel = {
+  const fakeResponse: ResponseModel = {
     data: {},
     succeeded: true,
     errors: [],

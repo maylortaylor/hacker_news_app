@@ -1,12 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed  } from '@angular/core/testing';
 import { RouterTestingModule  } from '@angular/router/testing';
+import { defer, throwError } from 'rxjs';
 import { BaseApiService } from './base-api.service';
 
 describe('BaseApiService', () => {
   let baseApiService: BaseApiService;
   let httpMock: HttpTestingController;
-  let testObject: any = {
+  const testObject: any = {
     "by" : "dhouston",
     "descendants" : 71,
     "id" : 8863,
@@ -17,6 +19,11 @@ describe('BaseApiService', () => {
     "type" : "story",
     "url" : "http://www.getdropbox.com/u/2/screencast.html"
   };
+  const errorResponse = new HttpErrorResponse({
+    error: '404 error',
+    status: 404,
+    statusText: 'Not Found'
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,7 +38,7 @@ describe('BaseApiService', () => {
     }).compileComponents();
 
     baseApiService = TestBed.inject(BaseApiService);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -49,5 +56,16 @@ describe('BaseApiService', () => {
     expect(req.request.method).toBe('GET');
 
     req.flush(testObject);
+  });
+
+  it('should return error', () => {
+    spyOn(baseApiService, 'get').and.returnValue(defer(() => Promise.reject(errorResponse)));
+
+    baseApiService.get('errorUrl').subscribe(
+      (data) => fail('Should have failed with 404 error'),
+      (error: HttpErrorResponse) => {
+        expect(error.status).toEqual(404);
+        expect(error.error).toContain('404 error');
+      });
   });
 });

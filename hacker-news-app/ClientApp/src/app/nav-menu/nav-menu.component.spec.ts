@@ -59,7 +59,7 @@ describe('NavMenuComponent', () => {
 
   it('should go to Random Story link', () => {
     const compiled = fixture.debugElement.nativeElement;
-    let href = compiled.querySelector('.navbar-nav .nav-item:nth-child(2) .nav-link').getAttribute('href');
+    const href = compiled.querySelector('.navbar-nav .nav-item:nth-child(2) .nav-link').getAttribute('href');
     expect(href).toEqual('/hacker-news-story-item');
   });
 
