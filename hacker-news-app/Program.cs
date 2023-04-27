@@ -6,6 +6,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IHackerNewsApiService, HackerNewsApiService>();
+builder.Services.AddScoped<IBaseAPIService, BaseAPIService>();
 builder.Services.AddSingleton<IUriService>(o =>
 {
     var accessor = o.GetRequiredService<IHttpContextAccessor>();

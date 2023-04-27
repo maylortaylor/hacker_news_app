@@ -2,7 +2,12 @@ using System.Net;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
-public static class BaseAPIService
+public interface IBaseAPIService 
+{
+    public Task<T?> RunAsync<T>(string url, string? urlParameters);
+}
+
+public class BaseAPIService : IBaseAPIService
 {
     private static HttpClient GetHttpClient(string url)
     {
@@ -37,7 +42,7 @@ public static class BaseAPIService
         }
     }
 
-    public static async Task<T?> RunAsync<T>(string url, string? urlParameters)
+    public async Task<T?> RunAsync<T>(string url, string? urlParameters)
     {
         return await GetAsync<T>(url, urlParameters);
     }

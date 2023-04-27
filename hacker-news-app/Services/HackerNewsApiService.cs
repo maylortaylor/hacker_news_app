@@ -10,18 +10,19 @@ public interface IHackerNewsApiService
 
 public class HackerNewsApiService : IHackerNewsApiService
 {
+    private readonly IBaseAPIService _baseApiService;
     private static readonly string baseUrl = "https://hacker-news.firebaseio.com/";
     private static readonly string apiVersion = "v0";
     private static readonly string fullApiUrl = $"{baseUrl}{apiVersion}";
     
-    public HackerNewsApiService() 
+    public HackerNewsApiService(IBaseAPIService baseAPIService) 
     {
-
+        _baseApiService = baseAPIService;
     }
 
     public HackerNewsFeedModel? GetHackerNewsStoryItem(int? itemId) 
     {
-        var response = BaseAPIService
+        var response = _baseApiService
             .RunAsync<HackerNewsFeedModel>($"{fullApiUrl}/item/{itemId}.json", null)
             .GetAwaiter().GetResult();
 
@@ -32,7 +33,7 @@ public class HackerNewsApiService : IHackerNewsApiService
 
     public List<int>? GetHackerNewsTopStories() 
     {
-        var response = BaseAPIService
+        var response = _baseApiService
             .RunAsync<List<int>>($"{fullApiUrl}/topstories.json", null)
             .GetAwaiter().GetResult();
 
@@ -43,7 +44,7 @@ public class HackerNewsApiService : IHackerNewsApiService
 
     public List<int>? GetHackerNewsNewStories() 
     {
-        var response = BaseAPIService
+        var response = _baseApiService
             .RunAsync<List<int>>($"{fullApiUrl}/newstories.json", null)
             .GetAwaiter().GetResult();
 
@@ -54,7 +55,7 @@ public class HackerNewsApiService : IHackerNewsApiService
 
     public List<int>? GetHackerNewsBestStories() 
     {
-        var response = BaseAPIService
+        var response = _baseApiService
             .RunAsync<List<int>>($"{fullApiUrl}/beststories.json", null)
             .GetAwaiter().GetResult();
 
