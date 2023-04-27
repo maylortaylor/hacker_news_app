@@ -7,22 +7,22 @@ namespace hacker_news_app.Controllers;
 [Route("api/[controller]")]
 public class HackerNewsController : ControllerBase
 {
-    private readonly ILogger<HackerNewsController> _logger;
     private readonly IMemoryCache _cacheProvider;
     private readonly IHttpClientFactory _httpService;
     private readonly IUriService _uriService;
+    private readonly IHackerNewsApiService _hackerNewsApiService;
 
     public HackerNewsController(
-        ILogger<HackerNewsController> logger,
         IMemoryCache cacheProvider,
         IHttpClientFactory httpService,
-        IUriService uriService
+        IUriService uriService,
+        IHackerNewsApiService hackerNewsApiService
         )
     {
-        _logger = logger;
         _cacheProvider = cacheProvider;
         _httpService = httpService;
         _uriService = uriService;
+        _hackerNewsApiService = hackerNewsApiService;
     }
 
     [HttpGet("{itemId:int?}")]
@@ -31,7 +31,7 @@ public class HackerNewsController : ControllerBase
     {
         if (itemId == null) return NoContent();
 
-        HackerNewsFeedModel hackerNewsStory = HackerNewsApiService.GetHackerNewsStoryItem(itemId);
+        HackerNewsFeedModel? hackerNewsStory = _hackerNewsApiService.GetHackerNewsStoryItem(itemId);
 
         if (hackerNewsStory == null) return NoContent();
 
@@ -44,7 +44,7 @@ public class HackerNewsController : ControllerBase
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsTopStories();
 
         if (topStoryIds == null) return NoContent();
 
@@ -57,7 +57,7 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel? story = HackerNewsApiService.GetHackerNewsStoryItem(id);
+            HackerNewsFeedModel? story = _hackerNewsApiService.GetHackerNewsStoryItem(id);
             if (story != null) {
                 topStories.Add(story);
             }
@@ -77,7 +77,7 @@ public class HackerNewsController : ControllerBase
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsTopStories();
 
         if (topStoryIds == null) return NoContent();
         
@@ -90,7 +90,7 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel? story = HackerNewsApiService.GetHackerNewsStoryItem(id);
+            HackerNewsFeedModel? story = _hackerNewsApiService.GetHackerNewsStoryItem(id);
             if (story != null) {
                 topStories.Add(story);
             }
@@ -110,7 +110,7 @@ public class HackerNewsController : ControllerBase
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = HackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsTopStories();
         
         if (topStoryIds == null) return NoContent();
 
@@ -123,7 +123,7 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel? story = HackerNewsApiService.GetHackerNewsStoryItem(id);
+            HackerNewsFeedModel? story = _hackerNewsApiService.GetHackerNewsStoryItem(id);
             if (story != null) {
                 topStories.Add(story);
             }

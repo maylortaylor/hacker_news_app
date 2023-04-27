@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IHackerNewsApiService, HackerNewsApiService>();
 builder.Services.AddSingleton<IUriService>(o =>
 {
     var accessor = o.GetRequiredService<IHttpContextAccessor>();
@@ -33,7 +33,6 @@ builder.Services.AddControllers(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();

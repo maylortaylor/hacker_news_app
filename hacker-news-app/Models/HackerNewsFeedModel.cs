@@ -2,6 +2,9 @@ namespace hacker_news_app;
 
 public class HackerNewsFeedModel
 {
+    public HackerNewsFeedModel(int Id) {
+        this.Id = Id;
+    }
     public int Id { get; set; }
     public bool Deleted { get; set; }
     public string? Type { get; set; }
