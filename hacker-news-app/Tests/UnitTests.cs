@@ -23,14 +23,14 @@ public class UnitTests
     }
 
     [Fact]
-    public void GetNewsStoryItem_Test()
+    public async Task GetNewsStoryItem_Test()
     {
         var cacheMock = new Mock<IMemoryCache>();
         var httpClientMock = new Mock<IHttpClientFactory>();
         var uriMock = new Mock<IUriService>();
         var apiMock = new Mock<IHackerNewsApiService>();
         var returnValue = new HackerNewsFeedModel(8863);
-        apiMock.Setup(r => r.GetHackerNewsStoryItem(8863)).Returns(returnValue);
+        apiMock.Setup(async r => await r.GetHackerNewsStoryItem(8863)).Returns(returnValue);
         var controller = new HackerNewsController(
             cacheMock.Object,
             httpClientMock.Object,
@@ -43,7 +43,7 @@ public class UnitTests
     }
 
     [Fact]
-    public void GetHackerNewsTopStories_Test()
+    public async Task GetHackerNewsTopStories_Test()
     {
         var cacheMock = new Mock<IMemoryCache>();
         var httpClientMock = new Mock<IHttpClientFactory>();
@@ -51,7 +51,7 @@ public class UnitTests
         var apiMock = new Mock<IHackerNewsApiService>();
         var paginationFilter = new PaginationFilter();
         var returnValue = new List<int>();
-        apiMock.Setup(r => r.GetHackerNewsTopStories()).Returns(returnValue);
+        apiMock.Setup(async r => await r.GetHackerNewsTopStories()).Returns(returnValue);
         var controller = new HackerNewsController(
             cacheMock.Object,
             httpClientMock.Object,
@@ -64,7 +64,7 @@ public class UnitTests
     }
 
     [Fact]
-    public void GetHackerNewsNewStories_Test()
+    public async Task GetHackerNewsNewStories_Test()
     {
         var cacheMock = new Mock<IMemoryCache>();
         var httpClientMock = new Mock<IHttpClientFactory>();
@@ -72,7 +72,7 @@ public class UnitTests
         var apiMock = new Mock<IHackerNewsApiService>();
         var paginationFilter = new PaginationFilter();
         var returnValue = new List<int>();
-        apiMock.Setup(r => r.GetHackerNewsNewStories()).Returns(returnValue);
+        apiMock.Setup(async r => await r.GetHackerNewsNewStories()).Returns(returnValue);
         var controller = new HackerNewsController(
             cacheMock.Object,
             httpClientMock.Object,
@@ -85,7 +85,7 @@ public class UnitTests
     }
 
     [Fact]
-    public void GetHackerNewsBestStories_Test()
+    public async Task GetHackerNewsBestStories_Test()
     {
         var cacheMock = new Mock<IMemoryCache>();
         var httpClientMock = new Mock<IHttpClientFactory>();
@@ -93,7 +93,7 @@ public class UnitTests
         var apiMock = new Mock<IHackerNewsApiService>();
         var paginationFilter = new PaginationFilter();
         var returnValue = new List<int>();
-        apiMock.Setup(r => r.GetHackerNewsBestStories()).Returns(returnValue);
+        apiMock.Setup(async r => await r.GetHackerNewsBestStories()).Returns(returnValue);
         var controller = new HackerNewsController(
             cacheMock.Object,
             httpClientMock.Object,

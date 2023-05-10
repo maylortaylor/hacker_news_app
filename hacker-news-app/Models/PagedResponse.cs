@@ -17,4 +17,8 @@ public class PagedResponse<T> : Response<T>
         this.Succeeded = true;
         this.Errors = null;
     }
+
+    public PagedResponse()
+    {
+    }
 }

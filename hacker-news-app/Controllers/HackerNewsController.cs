@@ -27,26 +27,26 @@ public class HackerNewsController : ControllerBase
 
     [HttpGet("{itemId:int?}")]
     [ResponseCache(CacheProfileName = nameof(CacheProfileName.Default60))]
-    public async Task<IActionResult> GetNewsStoryItem(int? itemId)
+    public async Task<Response<HackerNewsFeedModel>?> GetNewsStoryItem(int? itemId)
     {
-        if (itemId == null) return NoContent();
+        if (itemId == null) return null;
 
-        HackerNewsFeedModel? hackerNewsStory = _hackerNewsApiService.GetHackerNewsStoryItem(itemId);
+        HackerNewsFeedModel? hackerNewsStory = await _hackerNewsApiService.GetHackerNewsStoryItem(itemId);
 
-        if (hackerNewsStory == null) return NoContent();
+        if (hackerNewsStory == null) return null;
 
-        return Ok(new Response<HackerNewsFeedModel>(hackerNewsStory));
+        return new Response<HackerNewsFeedModel>(hackerNewsStory);
     }
 
     [HttpGet("topstories")]
     [ResponseCache(CacheProfileName = nameof(CacheProfileName.Default60))]
-    public async Task<IActionResult> GetTopStories([FromQuery] PaginationFilter filter)
+    public async Task<PagedResponse<List<HackerNewsFeedModel>>?> GetTopStories([FromQuery] PaginationFilter filter)
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = await _hackerNewsApiService.GetHackerNewsTopStories();
 
-        if (topStoryIds == null) return NoContent();
+        if (topStoryIds == null) return null;
 
         int totalRecords = topStoryIds.Count() / 5; // limit number of items to sort
         topStoryIds = topStoryIds.Take(totalRecords).ToList();
@@ -57,29 +57,29 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel? story = _hackerNewsApiService.GetHackerNewsStoryItem(id);
+            HackerNewsFeedModel? story = await _hackerNewsApiService.GetHackerNewsStoryItem(id);
             if (story != null) {
                 topStories.Add(story);
             }
         }
 
-        if (topStories == null) return NoContent();
+        if (topStories == null) return null;
 
         PagedResponse<List<HackerNewsFeedModel>>? pagedResponse = PaginationHelper
             .CreatePagedResponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
 
-        return Ok(pagedResponse);
+        return pagedResponse;
     }
     
     [HttpGet("newstories")]
     [ResponseCache(CacheProfileName = nameof(CacheProfileName.Default20))]
-    public async Task<IActionResult> GetNewStories([FromQuery] PaginationFilter filter)
+    public async Task<PagedResponse<List<HackerNewsFeedModel>>?> GetNewStories([FromQuery] PaginationFilter filter)
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsNewStories();
+        List<int>? topStoryIds = await _hackerNewsApiService.GetHackerNewsNewStories();
 
-        if (topStoryIds == null) return NoContent();
+        if (topStoryIds == null) return null;
         
         int totalRecords = topStoryIds.Count() / 5; // limit number of items to sort
         topStoryIds = topStoryIds.Take(totalRecords).ToList();
@@ -90,29 +90,29 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel? story = _hackerNewsApiService.GetHackerNewsStoryItem(id);
+            HackerNewsFeedModel? story = await _hackerNewsApiService.GetHackerNewsStoryItem(id);
             if (story != null) {
                 topStories.Add(story);
             }
         }
 
-        if (topStories == null) return NoContent();
+        if (topStories == null) return null;
 
         PagedResponse<List<HackerNewsFeedModel>>? pagedResponse = PaginationHelper
             .CreatePagedResponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
 
-        return Ok(pagedResponse);
+        return pagedResponse;
     }
 
     [HttpGet("beststories")]
     [ResponseCache(CacheProfileName = nameof(CacheProfileName.Default60))]
-    public async Task<IActionResult> GetBestStories([FromQuery] PaginationFilter filter)
+    public async Task<PagedResponse<List<HackerNewsFeedModel>>?> GetBestStories([FromQuery] PaginationFilter filter)
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsBestStories();
+        List<int>? topStoryIds = await _hackerNewsApiService.GetHackerNewsBestStories();
         
-        if (topStoryIds == null) return NoContent();
+        if (topStoryIds == null) return null;
 
         int totalRecords = topStoryIds.Count() / 5; // limit number of items to sort
         topStoryIds = topStoryIds.Take(totalRecords).ToList();
@@ -123,17 +123,17 @@ public class HackerNewsController : ControllerBase
 
         foreach (int id in pagedData)
         {
-            HackerNewsFeedModel? story = _hackerNewsApiService.GetHackerNewsStoryItem(id);
+            HackerNewsFeedModel? story = await _hackerNewsApiService.GetHackerNewsStoryItem(id);
             if (story != null) {
                 topStories.Add(story);
             }
         }
 
-        if (topStories == null) return NoContent();
+        if (topStories == null) return null;
 
         PagedResponse<List<HackerNewsFeedModel>>? pagedResponse = PaginationHelper
             .CreatePagedResponse<HackerNewsFeedModel>(topStories, paginationFilter, totalRecords, this._uriService, Request.Path.Value);
 
-        return Ok(pagedResponse);
+        return pagedResponse;
     }
 }

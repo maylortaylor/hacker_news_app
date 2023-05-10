@@ -2,10 +2,10 @@ using hacker_news_app;
 
 public interface IHackerNewsApiService 
 {
-    public HackerNewsFeedModel? GetHackerNewsStoryItem(int? itemId);
-    public List<int>? GetHackerNewsTopStories();
-    public List<int>? GetHackerNewsNewStories();
-    public List<int>? GetHackerNewsBestStories();
+    public Task<HackerNewsFeedModel?> GetHackerNewsStoryItem(int? itemId);
+    public Task<List<int>?> GetHackerNewsTopStories();
+    public Task<List<int>?> GetHackerNewsNewStories();
+    public Task<List<int>?> GetHackerNewsBestStories();
 }
 
 public class HackerNewsApiService : IHackerNewsApiService
@@ -20,44 +20,40 @@ public class HackerNewsApiService : IHackerNewsApiService
         _baseApiService = baseAPIService;
     }
 
-    public HackerNewsFeedModel? GetHackerNewsStoryItem(int? itemId) 
+    public async Task<HackerNewsFeedModel?> GetHackerNewsStoryItem(int? itemId) 
     {
-        var response = _baseApiService
-            .RunAsync<HackerNewsFeedModel>($"{fullApiUrl}/item/{itemId}.json", null)
-            .GetAwaiter().GetResult();
+        var response = await _baseApiService
+            .RunAsync<HackerNewsFeedModel>($"{fullApiUrl}/item/{itemId}.json", null);
 
         if (response == null) return null;
 
         return response;
     }
 
-    public List<int>? GetHackerNewsTopStories() 
+    public async Task<List<int>?> GetHackerNewsTopStories() 
     {
-        var response = _baseApiService
-            .RunAsync<List<int>>($"{fullApiUrl}/topstories.json", null)
-            .GetAwaiter().GetResult();
+        var response = await _baseApiService
+            .RunAsync<List<int>>($"{fullApiUrl}/topstories.json", null);
 
         if (response == null) return null;
         
         return response;
     }
 
-    public List<int>? GetHackerNewsNewStories() 
+    public async Task<List<int>?> GetHackerNewsNewStories() 
     {
-        var response = _baseApiService
-            .RunAsync<List<int>>($"{fullApiUrl}/newstories.json", null)
-            .GetAwaiter().GetResult();
+        var response = await _baseApiService
+            .RunAsync<List<int>>($"{fullApiUrl}/newstories.json", null);
 
         if (response == null) return null;
         
         return response;
     }
 
-    public List<int>? GetHackerNewsBestStories() 
+    public async Task<List<int>?> GetHackerNewsBestStories() 
     {
-        var response = _baseApiService
-            .RunAsync<List<int>>($"{fullApiUrl}/beststories.json", null)
-            .GetAwaiter().GetResult();
+        var response = await _baseApiService
+            .RunAsync<List<int>>($"{fullApiUrl}/beststories.json", null);
 
         if (response == null) return null;
         
