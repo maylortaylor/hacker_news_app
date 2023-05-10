@@ -23,12 +23,12 @@ export class HackerNewsStoryItemComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.itemId = params['itemId'];
-    });
 
-    if (this.itemId) {
-      this.getHackerNewsSingleItem(+this.itemId);
-      return;
-    }
+      if (this.itemId) {
+        this.getHackerNewsSingleItem(+this.itemId);
+        return;
+      }
+    });
 
     this.getHackerNewsSingleItem(this.randomNumberBetween(8000,80000));
   }

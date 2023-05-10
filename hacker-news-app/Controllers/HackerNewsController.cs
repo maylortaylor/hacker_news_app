@@ -77,7 +77,7 @@ public class HackerNewsController : ControllerBase
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsNewStories();
 
         if (topStoryIds == null) return NoContent();
         
@@ -110,7 +110,7 @@ public class HackerNewsController : ControllerBase
     {
         PaginationFilter paginationFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
         List<HackerNewsFeedModel> topStories = new List<HackerNewsFeedModel>();
-        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsTopStories();
+        List<int>? topStoryIds = _hackerNewsApiService.GetHackerNewsBestStories();
         
         if (topStoryIds == null) return NoContent();
 
